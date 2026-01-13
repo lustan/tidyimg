@@ -1,9 +1,8 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  // 替换为你的仓库名称，例如 '/vistia/'
-  // 如果是个人主页 (username.github.io) 则设置为 '/'
-  base: './', 
+  // 这里的 base 必须对应你的 GitHub 仓库名
+  base: '/PixKit/', 
   build: {
     outDir: 'dist',
   },
