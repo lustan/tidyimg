@@ -37,7 +37,6 @@ const App: React.FC = () => {
       size: file.size,
     });
     
-    // 设置默认格式为当前图片格式
     setTargetFormat(file.type as ImageFormat);
     setOutputSize(formatBytes(file.size));
     setActiveTool(ToolType.NONE);
@@ -131,7 +130,7 @@ const App: React.FC = () => {
         
         let name = imageState.name.substring(0, imageState.name.lastIndexOf('.'));
         const ext = targetFormat.split('/')[1].replace('svg+xml', 'svg');
-        a.download = `${name}_tidy.${ext}`;
+        a.download = `${name}_neo.${ext}`;
         
         document.body.appendChild(a);
         a.click();
@@ -197,17 +196,17 @@ const App: React.FC = () => {
   const Logo = ({ size = 40, className = "" }: { size?: number, className?: string }) => (
     <div className={`relative flex items-center justify-center ${className}`} style={{ width: size, height: size }}>
       <svg width={size} height={size} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="40" height="40" rx="10" fill="url(#tidy_grad_main)" />
-        <path d="M12 14V26M12 14H22C23.6569 14 25 15.3431 25 17C25 18.6569 23.6569 20 22 20H12M28 26L22 20" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="28" cy="14" r="3" fill="white" />
+        <path d="M20 2L35.5885 11V29L20 38L4.41154 29V11L20 2Z" fill="url(#neo_grad_main)" />
+        <path d="M20 2L20 20L4.41154 11M35.5885 11L20 20M35.5885 29L20 20L20 38M4.41154 29L20 20" stroke="white" strokeWidth="1" strokeOpacity="0.2" />
+        <path d="M21 12L15 22H20L19 28L25 18H20L21 12Z" fill="white" />
         <defs>
-          <linearGradient id="tidy_grad_main" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#6366F1"/>
-            <stop offset="1" stopColor="#A855F7"/>
+          <linearGradient id="neo_grad_main" x1="4.41154" y1="2" x2="35.5885" y2="38" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#06B6D4"/>
+            <stop offset="1" stopColor="#10B981"/>
           </linearGradient>
         </defs>
       </svg>
-      <div className="absolute inset-0 bg-indigo-500 blur-lg opacity-20 -z-10 animate-pulse"></div>
+      <div className="absolute inset-0 bg-cyan-500 blur-lg opacity-20 -z-10 animate-pulse"></div>
     </div>
   );
 
@@ -223,21 +222,20 @@ const App: React.FC = () => {
 
       {!imageState ? (
         <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-[#020617]">
-          {/* Decorative background elements */}
           <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none bg-dots"></div>
-          <div className="absolute top-1/4 -left-20 w-[40rem] h-[40rem] bg-indigo-600/10 blur-[180px] rounded-full"></div>
-          <div className="absolute bottom-1/4 -right-20 w-[40rem] h-[40rem] bg-purple-600/10 blur-[180px] rounded-full"></div>
+          <div className="absolute top-1/4 -left-20 w-[40rem] h-[40rem] bg-cyan-600/10 blur-[180px] rounded-full"></div>
+          <div className="absolute bottom-1/4 -right-20 w-[40rem] h-[40rem] bg-emerald-600/10 blur-[180px] rounded-full"></div>
           
           <div className="text-center mb-12 relative z-10">
               <div className="flex justify-center mb-6">
-                  <Logo size={64} className="hover:scale-110 transition-transform duration-500 cursor-pointer" />
+                  <Logo size={84} className="hover:scale-110 transition-transform duration-500 cursor-pointer" />
               </div>
               <h1 className="text-7xl md:text-8xl tracking-tighter mb-6 select-none flex justify-center items-baseline">
-                  <span className="font-extrabold text-white">Tidy</span>
+                  <span className="font-extrabold text-white">Neo</span>
                   <span className="font-light text-slate-500">Img</span>
               </h1>
               <p className="text-slate-400 text-lg md:text-xl max-w-xl mx-auto leading-relaxed font-light tracking-tight px-4">
-                  <span className="text-white font-medium border-b border-indigo-500/30">极致、私密、现代</span> 的图像工作站。<br/>
+                  <span className="text-white font-medium border-b border-cyan-500/30">极致、私密、现代</span> 的图像工作站。<br/>
                   在浏览器本地安全地完成裁剪、缩放与压缩。
               </p>
           </div>
@@ -249,7 +247,7 @@ const App: React.FC = () => {
           <div className="mt-16 flex items-center space-x-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
              <div className="flex items-center space-x-2"><div className="w-2 h-2 rounded-full bg-green-500"></div><span className="text-[10px] font-bold tracking-widest uppercase">本地加密</span></div>
              <div className="flex items-center space-x-2"><div className="w-2 h-2 rounded-full bg-blue-500"></div><span className="text-[10px] font-bold tracking-widest uppercase">AI 增强</span></div>
-             <div className="flex items-center space-x-2"><div className="w-2 h-2 rounded-full bg-purple-500"></div><span className="text-[10px] font-bold tracking-widest uppercase">无损处理</span></div>
+             <div className="flex items-center space-x-2"><div className="w-2 h-2 rounded-full bg-cyan-500"></div><span className="text-[10px] font-bold tracking-widest uppercase">无损处理</span></div>
           </div>
         </div>
       ) : (
@@ -259,7 +257,7 @@ const App: React.FC = () => {
               <div className="flex items-center space-x-3 cursor-pointer group" onClick={() => setImageState(null)}>
                  <Logo size={32} />
                  <div className="flex items-baseline tracking-tighter">
-                   <span className="font-extrabold text-xl text-white group-hover:text-indigo-400 transition-all duration-300">Tidy</span>
+                   <span className="font-extrabold text-xl text-white group-hover:text-cyan-400 transition-all duration-300">Neo</span>
                    <span className="font-light text-xl text-slate-400 transition-all duration-300">Img</span>
                  </div>
               </div>
@@ -278,7 +276,7 @@ const App: React.FC = () => {
             <div className="flex items-center space-x-6">
                 <div className="hidden md:flex flex-col items-end">
                     <span className="text-[9px] text-slate-500 uppercase tracking-[0.2em] font-black">预估大小</span>
-                    <span className="font-mono text-indigo-400 text-sm font-bold">{outputSize}</span>
+                    <span className="font-mono text-cyan-400 text-sm font-bold">{outputSize}</span>
                 </div>
                 <button 
                     onClick={handleReset}
@@ -289,7 +287,7 @@ const App: React.FC = () => {
                 <button 
                     onClick={handleDownload}
                     disabled={processing}
-                    className="bg-white text-black px-6 py-2 rounded-lg font-extrabold text-xs transition-all hover:bg-indigo-500 hover:text-white active:scale-95 disabled:opacity-50 tracking-widest uppercase shadow-xl shadow-indigo-500/20"
+                    className="bg-white text-black px-6 py-2 rounded-lg font-extrabold text-xs transition-all hover:bg-cyan-500 hover:text-white active:scale-95 disabled:opacity-50 tracking-widest uppercase shadow-xl shadow-cyan-500/20"
                 >
                     {processing ? '正在导出...' : '导出图片'}
                 </button>
@@ -304,15 +302,13 @@ const App: React.FC = () => {
                   cropArea={cropArea}
                   setCropArea={setCropArea}
                />
-               
-               {/* Image Meta Badge */}
                <div className="absolute bottom-6 left-6 bg-slate-900/40 backdrop-blur-xl text-[10px] font-bold text-slate-300 px-4 py-2.5 rounded-xl border border-white/5 flex items-center space-x-4 shadow-2xl">
                    <div className="flex items-center space-x-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-500"></span>
                       <span className="tracking-widest">{imageState.dimensions.width} &times; {imageState.dimensions.height} PX</span>
                    </div>
                    <span className="text-white/10">|</span>
-                   <span className="uppercase tracking-[0.2em] text-indigo-400">{imageState.type.split('/')[1].replace('svg+xml', 'svg')}</span>
+                   <span className="uppercase tracking-[0.2em] text-cyan-400">{imageState.type.split('/')[1].replace('svg+xml', 'svg')}</span>
                </div>
             </main>
 
@@ -333,8 +329,8 @@ const App: React.FC = () => {
                             }}
                             className={`
                                 h-14 w-full rounded-xl flex flex-col items-center justify-center transition-all relative group
-                                ${activeTool === tool.id ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 
-                                  tool.isAI ? 'text-indigo-400 hover:bg-indigo-500/10' : 'text-slate-500 hover:bg-white/5 hover:text-white'}
+                                ${activeTool === tool.id ? 'bg-cyan-600 text-white shadow-lg shadow-cyan-600/30' : 
+                                  tool.isAI ? 'text-cyan-400 hover:bg-cyan-500/10' : 'text-slate-500 hover:bg-white/5 hover:text-white'}
                             `}
                         >
                              {tool.isCrop ? (
@@ -348,7 +344,7 @@ const App: React.FC = () => {
                              )}
                              <span className="text-[8px] mt-1.5 font-bold uppercase tracking-widest">{tool.label}</span>
                              {tool.isAI && (
-                                 <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-indigo-500 rounded-full border border-slate-950 animate-ping"></div>
+                                 <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-cyan-500 rounded-full border border-slate-950 animate-ping"></div>
                              )}
                         </button>
                     ))}
